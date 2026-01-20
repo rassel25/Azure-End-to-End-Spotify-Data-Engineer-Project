@@ -1,0 +1,9 @@
+{
+	"name": "mgrspotifyproject",
+	"location": "germanywestcentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "feab1791-1891-42a8-82e3-0687df4e2049",
+		"tenantId": "6fe18060-dfaa-483b-b753-f06985184331"
+	}
+}
