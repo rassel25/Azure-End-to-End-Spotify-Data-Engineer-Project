@@ -3,11 +3,15 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "ForEach1",
+				"name": "ForEach_table",
 				"type": "ForEach",
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.loop_input",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "sql_server_to_data_lake",
@@ -38,7 +42,7 @@
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "SELECT * \nFROM @{pipeline().parameters.schema}.@{pipeline().parameters.table} WHERE @{pipeline().parameters.cdc_col} > \n'@{if(empty(pipeline().parameters.from_date),activity('last_cdc').output.value[0].cdc,pipeline().parameters.from_date)}'\n\n",
+										"value": "SELECT * FROM @{item().schema}.@{item().table} WHERE @{item().cdc_col} > '@{if(empty(item().from_date),activity('last_cdc').output.value[0].cdc,item().from_date)}'\n\n",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -76,11 +80,11 @@
 									"parameters": {
 										"container": "bronze",
 										"folder": {
-											"value": "@pipeline().parameters.table",
+											"value": "@item().table",
 											"type": "Expression"
 										},
 										"file": {
-											"value": "@concat(pipeline().parameters.table,'_',variables('current'))",
+											"value": "@concat(item().table,'_',variables('current'))\n\n\n",
 											"type": "Expression"
 										}
 									}
@@ -118,7 +122,7 @@
 										"container": "bronze",
 										"folder": "cdc",
 										"file": {
-											"value": "@concat(pipeline().parameters.table, '_cdc.json')",
+											"value": "@concat(item().table, '_cdc.json')",
 											"type": "Expression"
 										}
 									}
@@ -180,10 +184,13 @@
 												"parameters": {
 													"container": "bronze",
 													"folder": {
-														"value": "@pipeline().parameters.table",
+														"value": "@item().table",
 														"type": "Expression"
 													},
-													"file": "@concat(pipeline().parameters.table,'_',variables('current'))"
+													"file": {
+														"value": "@concat(item().table,'_',variables('current'))",
+														"type": "Expression"
+													}
 												}
 											},
 											"enableLogging": false,
@@ -266,7 +273,7 @@
 													"container": "bronze",
 													"folder": "cdc",
 													"file": {
-														"value": "@concat(pipeline().parameters.table,'_cdc.json')",
+														"value": "@concat(item().table,'_cdc.json')",
 														"type": "Expression"
 													}
 												}
@@ -294,7 +301,7 @@
 												{
 													"type": "Query",
 													"text": {
-														"value": "SELECT MAX(@{pipeline().parameters.cdc_col}) AS cdc FROM @{pipeline().parameters.schema}.@{pipeline().parameters.table}",
+														"value": "SELECT MAX(@{item().cdc_col}) AS cdc FROM @{item().schema}.@{item().table}",
 														"type": "Expression"
 													}
 												}
