@@ -1,0 +1,12 @@
+{
+	"name": "SqlServer",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerspotify",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
