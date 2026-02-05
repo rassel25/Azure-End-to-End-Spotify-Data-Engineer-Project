@@ -9,9 +9,9 @@
 			"database": "azure_spotify_db_project",
 			"encrypt": "optional",
 			"trustServerCertificate": false,
-			"authenticationType": "SQL",
-			"userName": "rassel",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIzMGRlNjc0YS0xOGQ4LTRiYmQtOWYxNi1kY2VlZTgxZTEwODgiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"authenticationType": "Windows",
+			"userName": "DESKTOP-SVRQCC2\\linco",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJjNTdmM2QyZi03MWRiLTQ1YzEtYWI2Yi1jM2U3MWVkMGQ0ZjUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "integrationRuntimesqlserveronpremise",
