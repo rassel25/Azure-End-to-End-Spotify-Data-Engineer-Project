@@ -1,4 +1,4 @@
-# 🎧 Spotify Azure Data Engineering Project
+# 🎧 Azure Streaming Data Engineering Project
 
 ### *End-to-End Modern Data Platform with Streaming, Medallion Architecture, Unity Catalog & CI/CD*
 
