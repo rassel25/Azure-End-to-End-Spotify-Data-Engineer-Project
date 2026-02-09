@@ -248,15 +248,16 @@ The project uses a simulated **Spotify dataset** with the following tables:
 
 | Table | Description | Key Columns |
 |-------|-------------|-------------|
-| **Artists** | Artist master data | artist_id, name, genre, country, popularity |
-| **Users** | User profiles | user_id, username, email, country, subscription_type |
-| **Tracks** | Song catalog | track_id, title, artist_id, album, duration_ms, release_date |
-| **Plays** | User listening history | play_id, user_id, track_id, played_at, duration_played |
+| **DimArtist** | Artist master data | artist_id, artist_name, genre, country, updated_at |
+| **DimUser** | User profiles | user_id, user_name, country, subscription_type, start_date, end_date, updated_at |
+| **DimTrack** | Song catalog | track_id, track_name, artist_id, album_name, duration_sec, release_date, updated_at |
+| **DimDate** | date history |  date_key, date, day, month, year, weekday |
+| **FactStream** | facts |  stream_id, user_id, track_id, date_key, listen_duration, device_type, stream_timestamp |
 
 ### Gold Layer (Star Schema)
 
 **Fact Table**
-- `fact_plays`: Granular play events with foreign keys to dimensions
+- `facts`: Granular play events with foreign keys to dimensions
 
 **Dimension Tables (SCD Type 2)**
 - `dim_artists`: Artist attributes with historical tracking
