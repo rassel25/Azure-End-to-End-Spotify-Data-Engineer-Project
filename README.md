@@ -49,6 +49,7 @@ The platform ingests data from **MS SQL Server**, processes it through a **Medal
 
 <img width="1301" height="784" alt="Screenshot 2026-02-09 172909" src="https://github.com/user-attachments/assets/4b928f4e-3d7a-43c1-ae59-8cc2f8aee138" />
 
+
 ```
 ┌─────────────────┐
 │   MS SQL Server │ (Source)
@@ -131,69 +132,6 @@ The platform ingests data from **MS SQL Server**, processes it through a **Medal
 - ✅ **Unity Catalog** for enterprise-grade governance
 - ✅ **Data Lineage** tracking and impact analysis
 - ✅ **Modular Design** for maintainability and scalability
-
----
-
-## 📂 Project Structure
-
-```
-spotify-azure-data-engineering/
-│
-├── README.md
-├── LICENSE
-│
-├── source_dataset/
-│   ├── initial_dataset.sql             # DDL for source database and initial data generation
-│   └── incremental_dataset.sql         # incremental data generation
-│
-├── pipeline/
-│   ├── pipelines/
-│   │   ├── incremental_ingestion.json # Incremental load pipeline
-│   │   ├── backfill_pipeline.json     # Historical backfill pipeline
-│   │   └── orchestrator.json          # Master pipeline
-│   ├── datasets/
-│   │   ├── sql_source_dataset.json    # SQL Server connection
-│   │   └── adls_sink_dataset.json     # Data Lake connection
-│   └── linked_services/
-│       ├── sql_server_ls.json         # SQL Server linked service
-│       ├── adls_gen2_ls.json          # ADLS Gen2 linked service
-│       └── databricks_ls.json         # Databricks linked service
-│
-├── databricks_notebooks/
-│   ├── bronze/
-│   │   └── raw_data_landing.py        # Bronze layer ingestion logic
-│   ├── silver/
-│   │   ├── stream_artists.py          # Artist dimension streaming
-│   │   ├── stream_tracks.py           # Track dimension streaming
-│   │   ├── stream_users.py            # User dimension streaming
-│   │   └── stream_plays.py            # Plays fact streaming
-│   ├── gold/
-│   │   ├── dlt_star_schema.py         # DLT pipeline definition
-│   │   ├── dim_artists_scd2.py        # SCD Type 2 for artists
-│   │   ├── dim_users_scd2.py          # SCD Type 2 for users
-│   │   └── fact_plays.py              # Fact table creation
-│   └── utilities/
-│       ├── config.py                  # Configuration management
-│       ├── helpers.py                 # Reusable helper functions
-│       └── data_quality.py            # Quality check functions
-│
-├── asset_bundles/
-│   ├── databricks.yml                 # Asset bundle configuration
-│   └── resources/
-│       ├── jobs.yml                   # Job definitions
-│       └── pipelines.yml              # DLT pipeline definitions
-│
-├── ci_cd/
-│   └── .github/
-│       └── workflows/
-│           ├── deploy_dev.yml         # Dev environment deployment
-│           └── deploy_prod.yml        # Prod environment deployment
-│
-└── docs/
-    ├── architecture.md                # Detailed architecture docs
-    ├── setup_guide.md                 # Step-by-step setup
-    └── scd2_implementation.md         # SCD Type 2 explanation
-```
 
 ---
 
